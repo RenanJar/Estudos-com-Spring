@@ -22,13 +22,14 @@ import java.util.List;
 @CrossOrigin("*")
 public class TarefaController {
 
-    @Autowired                          ///injeção de dependendia pois a classe euma interface nao sendo possivel instacia-la
+    @Autowired                          ///injeção de dependendia pois a classe e uma interface nao sendo possivel instacia-la
     private TarefaRepository repository;
 
     @GetMapping
     public ResponseEntity<List<TarefasModel>> GetALL(){
         return ResponseEntity.ok(repository.findAll());
     }
+
     @GetMapping("/{id}")
     public ResponseEntity<TarefasModel> GetdbyID(@PathVariable int id){
         return repository.findById(id).map(resp-> ResponseEntity.ok(resp)).orElse(ResponseEntity.notFound().build());
